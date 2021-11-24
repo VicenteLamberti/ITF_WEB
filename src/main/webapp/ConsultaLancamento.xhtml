@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Lançamentos-ITF</title>
+	
+	<h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body id="corpoLancamento" class="corpoLancamentos">
+	<div>
+	<h1 id="tituloConsultaLancamentos" class="titulo">Consulta Lançamentos Receitas/Despesas</h1>
+	<h:form>
+		<h:messages showDetail="false" showSummary="true" />
+		<h:button id = "btnNovoLancamento" class="botao" value="Novo Lançamento" color="red"
+			outcome="CadastroLancamento" />
+			
+
+		<h:dataTable var="lancamento"
+			class="tabela"
+			headerClass="cabecalho"
+			columnClasses="estiloColunas,estiloColunas,estiloColunas,estiloColunas,estiloColunas,estiloColunas,estiloColunas,estiloColunas"
+			value="#{consultaLancamentoBean.lancamentos}" width="90%">
+
+			<h:column >
+			
+				<f:facet name="header">
+					Tipo
+				</f:facet>
+				
+				<h:outputText value="&gt;"
+					style="color:red;  text-align: center;"
+					rendered="#{lancamento.tipo eq 'DESPESA'}" />
+
+				<h:outputText  value="&lt;"
+					style="color:green;"
+					rendered="#{lancamento.tipo eq 'RECEITA'}" />
+			</h:column>
+
+
+
+			<h:column >
+				<f:facet name="header">
+					Empresa
+				</f:facet>
+
+				<h:outputText value="#{lancamento.empresa.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					Valor
+				</f:facet>
+
+				<h:outputText value="#{lancamento.valor}" style="color:green;" rendered="#{lancamento.pago}">
+					<f:convertNumber locale="pt-br" currencySymbol="R$" type="currency"/>
+				</h:outputText>
+				
+					<h:outputText value="#{lancamento.valor}" style="color:red;" rendered="#{not lancamento.pago}">
+					<f:convertNumber locale="pt-br" currencySymbol="R$" type="currency"/>
+				</h:outputText>
+			</h:column>
+
+
+
+			<h:column>
+				<f:facet name="header">
+					Descrição Nota
+				</f:facet>
+
+				<h:outputText value="#{lancamento.descricao}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">
+					Situação
+				</f:facet>
+
+				<h:outputText value="Pago" rendered="#{lancamento.pago}"/>
+				<h:outputText value="Pendente" rendered="#{not lancamento.pago}"/>
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">
+					Data Vencimento
+				</f:facet>
+
+				<h:outputText value="#{lancamento.dataVencimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					Data Pagamento
+				</f:facet>
+
+				<h:outputText value="#{lancamento.dataPagamento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</h:column>
+			
+			<h:column >
+				<f:facet name="header">
+					Acões
+				</f:facet>
+
+				<h:commandButton value="X" action ="#{consultaLancamentoBean.excluirLancamento}" class="botao">
+					   <f:setPropertyActionListener value="#{lancamento}" target="#{consultaLancamentoBean.lancamentoSelecionado}"/>
+				</h:commandButton>
+					 
+			</h:column>
+
+
+
+		</h:dataTable>
+	</h:form>
+	</div>
+	
+</h:body>
+</html>

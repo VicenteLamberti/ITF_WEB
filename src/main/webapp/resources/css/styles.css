@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+.corpo {
+	width: 700px;
+	margin: auto;
+	border: solid 2px black;
+	box-shadow: 5px 5px gray;
+	padding: 10px;
+	font-style: normal;
+	font-family: cursive;
+	user-select: none;
+}
+
+.corpoLancamentos {
+	width: 90%;
+	margin: auto;
+	border: solid 2px black;
+	box-shadow: 5px 5px gray;
+	padding: 10px;
+	font-style: normal;
+	font-family: cursive;
+	user-select: none;
+}
+
+.botao {
+	background-color: rgb(75, 72, 72);
+	margin: 5px;
+	color: white;
+	padding: 0.5px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1rem;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.inputs {
+	margin: 5px;
+	border-radius: 5px;
+}
+
+.titulo {
+	text-align: center;
+}
+
+#frmNovoLancamento {
+	margin: auto;
+}
+
+.tabela {
+	border: 1px solid black;
+	margin: auto;
+}
+
+.estiloColunas {
+	border: 1px solid black;
+	text-align: center;
+}
+
+.estiloColunas>button {
+	align-items: center;
+}
+
+.cabecalho {
+	border: 1px solid black;
+}
